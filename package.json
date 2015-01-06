@@ -17,7 +17,10 @@
     "hubot-motivate": ">= 0.0.0",
     "hubot-thank-you": ">= 0.0.0",
     "hubot-mute": "*",
-    "cleverbot-node": "*"
+    "cleverbot-node": "*",
+    "url": "*",
+    "querystring": "*",
+    "gitio2": "2.0.0"
   },
   "engines": {
     "node": "0.10.x"
