@@ -1,0 +1,25 @@
+{
+  "name": "servicesbot",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Hardik Juneja <hardikjuneja.hj@gmail.com>",
+  "description": "A bot for services team",
+  "dependencies": {
+    "hubot": "^2.11.0",
+    "hubot-diagnostics": "0.0.1",
+    "hubot-google-images": "^0.1.2",
+    "hubot-google-translate": "^0.1.0",
+    "hubot-irc": "^0.2.7",
+    "hubot-maps": "0.0.1",
+    "hubot-redis-brain": "0.0.2",
+    "hubot-rules": "^0.1.0",
+    "hubot-scripts": "^2.5.16",
+    "hubot-motivate": ">= 0.0.0",
+    "hubot-thank-you": ">= 0.0.0",
+    "hubot-mute": "*",
+    "cleverbot-node": "*"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
