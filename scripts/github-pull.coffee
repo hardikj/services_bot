@@ -31,23 +31,15 @@ module.exports = (robot) ->
     return if req.body.zen? # initial ping
     pull = req.body
     try
-      if pull.action == "opened"
-        robot.send user, "[\x02\x0335New Pull Request\x03\x02] #{pull.pull_request.title} - #{pull.pull_request.html_url} (owner: \x02\x0326#{pull.pull_request.user.login}\x03\x02) "
-      else if pull.action == "closed" 
-        if pull.pull_request.merged
-          robot.send user, "[\x02\x0359Merged\x03\x02] #{pull.pull_request.title} [#{pull.pull_request.html_url}] (owner: \x02\x0326#{pull.pull_request.user.login}\x03\x02) "
-        else if !pull.pull_request.merged
-          robot.send user, "[\x02\x034Closed\x03\x02] #{pull.pull_request.title} [#{pull.pull_request.html_url}] (owner: \x02\x0326#{pull.pull_request.user.login}\x03\x02) "
-      ###
-      else
-          if push.commit
-              #commitWord = if push.commits.length > 1 then "commits" else "commit"
-              #push.commits.length > 0
-              for commit in push.commits
-                do (commit) ->
-                  gitio commit.url, (err, data) ->
-                  robot.send user, "  * #{commit.message} (#{if err then commit.url else data})"
-      #      robot.send user, "#{push.commit.commit.author.username}: #{push.commit.commit.message} (#{if err then commit.url else data})"
-      ###
+      switch pull.action
+        when "synchronize"
+          robot.send user, "[\x02\x0324Pull Updated\x03\x02] #{pull.pull_request.title} - #{pull.pull_request.html_url} (owner: \x02\x0344#{pull.pull_request.user.login}\x03\x02) "
+        when "opened"
+          robot.send user, "[\x02\x0342New Pull Request\x03\x02] #{pull.pull_request.title} - #{pull.pull_request.html_url} (owner: \x02\x0344#{pull.pull_request.user.login}\x03\x02) "
+        when "closed" 
+          if pull.pull_request.merged
+            robot.send user, "[\x02\x0313Merged\x03\x02] #{pull.pull_request.title} #{pull.pull_request.html_url} (owner: \x02\x0344#{pull.pull_request.user.login}\x03\x02) "
+          else if !pull.pull_request.merged
+            robot.send user, "[\x02\x034Closed\x03\x02] #{pull.pull_request.title} #{pull.pull_request.html_url} (owner: \x02\x0344#{pull.pull_request.user.login}\x03\x02) "
     catch error
       console.log "github-commits error: #{error}. Push: #{push}"
