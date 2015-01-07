@@ -27,11 +27,10 @@ module.exports = (robot) ->
 
     user = {}
     user.room = query.room if query.room
-    user.type = query.type if query.type
 
     return if req.body.zen? # initial ping
-    push = req.body
-
+    pull = req.body
+    console.log pull
     try
       if push.commits && push.commits.length > 0
         commitWord = if push.commits.length > 1 then "commits" else "commit"
